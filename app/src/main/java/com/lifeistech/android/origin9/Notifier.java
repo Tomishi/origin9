@@ -17,12 +17,14 @@ public class Notifier extends BroadcastReceiver {
         //通知がクリックされたときｎ発行されるintentの生成
         Intent sendIntent = new Intent(content,MainActivity.class);
         PendingIntent sender = PendingIntent.getActivity(content,0,sendIntent,0);
+        intent.getStringExtra("Task");
+        String data =intent.getStringExtra("Task");
 
         //通知オブジェクトの作成
         Notification notification = new NotificationCompat.Builder(content)
                 .setTicker("時間ですよ!")
                 .setContentTitle("通知")
-                .setContentText("設定した時間が来ました")
+                .setContentText(data)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setVibrate(new long[]{0, 200, 100, 200, 100, 200})
                 .setAutoCancel(true)
